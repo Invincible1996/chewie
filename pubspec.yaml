@@ -24,4 +24,4 @@ flutter:
   fonts:
     - family: CommonIcons
       fonts:
-        - asset: fonts/iconfont.ttf
+        - asset: assets/iconfont.ttf
