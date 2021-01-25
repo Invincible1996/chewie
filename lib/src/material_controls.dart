@@ -7,6 +7,8 @@ import 'package:chewie/src/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
+import 'common_icons.dart';
+
 class MaterialControls extends StatefulWidget {
   const MaterialControls({Key key}) : super(key: key);
 
@@ -16,8 +18,7 @@ class MaterialControls extends StatefulWidget {
   }
 }
 
-class _MaterialControlsState extends State<MaterialControls>
-    with SingleTickerProviderStateMixin {
+class _MaterialControlsState extends State<MaterialControls> with SingleTickerProviderStateMixin {
   VideoPlayerValue _latestValue;
   double _latestVolume;
   bool _hideStuff = true;
@@ -61,9 +62,7 @@ class _MaterialControlsState extends State<MaterialControls>
           absorbing: _hideStuff,
           child: Column(
             children: <Widget>[
-              if (_latestValue != null &&
-                      !_latestValue.isPlaying &&
-                      _latestValue.duration == null ||
+              if (_latestValue != null && !_latestValue.isPlaying && _latestValue.duration == null ||
                   _latestValue.isBuffering)
                 const Expanded(
                   child: Center(
@@ -127,17 +126,14 @@ class _MaterialControlsState extends State<MaterialControls>
         child: Row(
           children: <Widget>[
             _buildPlayPause(controller),
-            if (chewieController.isLive)
-              const Expanded(child: Text('LIVE'))
-            else
-              _buildPosition(iconColor),
-            if (chewieController.isLive)
-              const SizedBox()
-            else
-              _buildProgressBar(),
-            if (chewieController.allowPlaybackSpeedChanging)
-              _buildSpeedButton(controller),
+            // if (chewieController.isLive)
+            //   const Expanded(child: Text('LIVE'))
+            // else
+            //   _buildPosition(iconColor),
+            if (chewieController.isLive) const SizedBox() else _buildProgressBar(),
+            if (chewieController.allowPlaybackSpeedChanging) _buildSpeedButton(controller),
             if (chewieController.allowMuting) _buildMuteButton(controller),
+            _buildPosition(iconColor),
             if (chewieController.allowFullScreen) _buildExpandButton(),
           ],
         ),
@@ -159,11 +155,11 @@ class _MaterialControlsState extends State<MaterialControls>
             right: 8.0,
           ),
           child: Center(
-            child: Icon(
-              chewieController.isFullScreen
-                  ? Icons.fullscreen_exit
-                  : Icons.fullscreen,
-            ),
+            child: !chewieController.isFullScreen
+                ? Icon(
+                    CommonIcons.icon_video_full_screen,
+                  )
+                : SizedBox.shrink(),
           ),
         ),
       ),
@@ -196,10 +192,7 @@ class _MaterialControlsState extends State<MaterialControls>
           color: Colors.transparent,
           child: Center(
             child: AnimatedOpacity(
-              opacity:
-                  _latestValue != null && !_latestValue.isPlaying && !_dragging
-                      ? 1.0
-                      : 0.0,
+              opacity: _latestValue != null && !_latestValue.isPlaying && !_dragging ? 1.0 : 0.0,
               duration: const Duration(milliseconds: 300),
               child: GestureDetector(
                 child: Container(
@@ -297,9 +290,7 @@ class _MaterialControlsState extends State<MaterialControls>
               right: 8.0,
             ),
             child: Icon(
-              (_latestValue != null && _latestValue.volume > 0)
-                  ? Icons.volume_up
-                  : Icons.volume_off,
+              (_latestValue != null && _latestValue.volume > 0) ? Icons.volume_up : Icons.volume_off,
             ),
           ),
         ),
@@ -326,12 +317,8 @@ class _MaterialControlsState extends State<MaterialControls>
   }
 
   Widget _buildPosition(Color iconColor) {
-    final position = _latestValue != null && _latestValue.position != null
-        ? _latestValue.position
-        : Duration.zero;
-    final duration = _latestValue != null && _latestValue.duration != null
-        ? _latestValue.duration
-        : Duration.zero;
+    final position = _latestValue != null && _latestValue.position != null ? _latestValue.position : Duration.zero;
+    final duration = _latestValue != null && _latestValue.duration != null ? _latestValue.duration : Duration.zero;
 
     return Padding(
       padding: const EdgeInsets.only(right: 24.0),
@@ -359,8 +346,7 @@ class _MaterialControlsState extends State<MaterialControls>
 
     _updateState();
 
-    if ((controller.value != null && controller.value.isPlaying) ||
-        chewieController.autoPlay) {
+    if ((controller.value != null && controller.value.isPlaying) || chewieController.autoPlay) {
       _startHideTimer();
     }
 
@@ -378,8 +364,7 @@ class _MaterialControlsState extends State<MaterialControls>
       _hideStuff = true;
 
       chewieController.toggleFullScreen();
-      _showAfterExpandCollapseTimer =
-          Timer(const Duration(milliseconds: 300), () {
+      _showAfterExpandCollapseTimer = Timer(const Duration(milliseconds: 300), () {
         setState(() {
           _cancelAndRestartTimer();
         });
