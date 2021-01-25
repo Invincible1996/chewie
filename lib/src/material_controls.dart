@@ -122,7 +122,11 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
       duration: const Duration(milliseconds: 300),
       child: Container(
         height: barHeight,
-        color: Theme.of(context).dialogBackgroundColor,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+          Color.fromRGBO(0, 0, 0, 0.5),
+          Color.fromRGBO(0, 0, 0, 0),
+        ])),
         child: Row(
           children: <Widget>[
             _buildPlayPause(controller),
@@ -158,6 +162,8 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
             child: !chewieController.isFullScreen
                 ? Icon(
                     CommonIcons.icon_video_full_screen,
+                    color: Colors.white,
+                    size: 18,
                   )
                 : SizedBox.shrink(),
           ),
@@ -310,7 +316,8 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
           right: 12.0,
         ),
         child: Icon(
-          controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+          controller.value.isPlaying ? CommonIcons.icon_video_play : CommonIcons.icon_video_pause,
+          color: Colors.white,
         ),
       ),
     );
@@ -326,6 +333,7 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
         '${formatDuration(position)} / ${formatDuration(duration)}',
         style: const TextStyle(
           fontSize: 14.0,
+          color: Colors.white,
         ),
       ),
     );
