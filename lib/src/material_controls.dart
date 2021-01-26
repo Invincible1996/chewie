@@ -158,14 +158,19 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
             left: 8.0,
             right: 8.0,
           ),
-          child: Center(
-            child: !chewieController.isFullScreen
-                ? Icon(
-                    CommonIcons.icon_video_full_screen,
-                    color: Colors.white,
-                    size: 18,
-                  )
-                : SizedBox.shrink(),
+          // child: Center(
+          //   child: !chewieController.isFullScreen
+          //       ? Icon(
+          //           CommonIcons.icon_video_full_screen,
+          //           color: Colors.white,
+          //           size: 18,
+          //         )
+          //       : SizedBox.shrink(),
+          // ),
+          child: Icon(
+            CommonIcons.icon_video_full_screen,
+            color: Colors.white,
+            size: 18,
           ),
         ),
       ),

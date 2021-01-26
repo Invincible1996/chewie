@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:video_player/video_player.dart';
 import 'package:wakelock/wakelock.dart';
+import 'package:orientation/orientation.dart';
 
 typedef ChewieRoutePageBuilder = Widget Function(
   BuildContext context,
@@ -64,6 +65,7 @@ class ChewieState extends State<Chewie> {
       await _pushFullScreenWidget(context);
     } else if (_isFullScreen) {
       Navigator.of(context, rootNavigator: true).pop();
+      OrientationPlugin.forceOrientation(DeviceOrientation.portraitUp);
       _isFullScreen = false;
     }
   }

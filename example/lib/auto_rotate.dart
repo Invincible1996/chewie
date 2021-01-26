@@ -37,7 +37,7 @@ class _ChewieDemoState extends State<ChewieDemo> {
 
   Future<void> initializeAutoRotatePlayer() async {
     _videoPlayerController1 = VideoPlayerController.network(
-        'https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4');
+        'http://va-videos.oss-cn-hangzhou.aliyuncs.com/video-record/test/test/teach-record-0d281450-5f8d-11eb-a788-0387b27b8412/index.m3u8');
     await _videoPlayerController1.initialize();
     _videoPlayerController2 = VideoPlayerController.network(
         'https://assets.mixkit.co/videos/preview/mixkit-a-girl-blowing-a-bubble-gum-at-an-amusement-park-1226-large.mp4');

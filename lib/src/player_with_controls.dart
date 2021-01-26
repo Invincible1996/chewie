@@ -1,10 +1,9 @@
-import 'dart:ui';
-
 import 'package:chewie/src/chewie_player.dart';
-import 'package:chewie/src/cupertino_controls.dart';
 import 'package:chewie/src/material_controls.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:orientation/orientation.dart';
 import 'package:video_player/video_player.dart';
 
 class PlayerWithControls extends StatelessWidget {
@@ -58,13 +57,29 @@ class PlayerWithControls extends StatelessWidget {
     }
 
     return Center(
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: AspectRatio(
-          aspectRatio: _calculateAspectRatio(context),
-          child: _buildPlayerWithControls(chewieController, context),
-        ),
+      child: Stack(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: AspectRatio(
+              aspectRatio: _calculateAspectRatio(context),
+              child: _buildPlayerWithControls(chewieController, context),
+            ),
+          ),
+          Positioned(
+              left: 30,
+              top: 20,
+              child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    OrientationPlugin.forceOrientation(DeviceOrientation.portraitUp);
+                  },
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.white,
+                  )))
+        ],
       ),
     );
   }
