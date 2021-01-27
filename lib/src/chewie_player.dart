@@ -118,7 +118,9 @@ class ChewieState extends State<Chewie> {
   ) {
     final controllerProvider = _ChewieControllerProvider(
       controller: widget.controller,
-      child: const PlayerWithControls(),
+      child: PlayerWithControls(
+        onScreenOrientationChange: widget.onScreenOrientationChange,
+      ),
     );
 
     if (widget.controller.routePageBuilder == null) {

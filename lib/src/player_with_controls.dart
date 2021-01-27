@@ -2,12 +2,11 @@ import 'package:chewie/src/chewie_player.dart';
 import 'package:chewie/src/material_controls.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:orientation/orientation.dart';
 import 'package:video_player/video_player.dart';
 
 class PlayerWithControls extends StatelessWidget {
-  const PlayerWithControls({Key key}) : super(key: key);
+  const PlayerWithControls({Key key, this.onScreenOrientationChange}) : super(key: key);
+  final Function(bool isFullScreen) onScreenOrientationChange;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +72,8 @@ class PlayerWithControls extends StatelessWidget {
               child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).pop();
-                    OrientationPlugin.forceOrientation(DeviceOrientation.portraitUp);
+                    onScreenOrientationChange?.call(false);
+                    // OrientationPlugin.forceOrientation(DeviceOrientation.portraitUp);
                   },
                   child: Icon(
                     Icons.arrow_back_ios,
