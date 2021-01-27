@@ -13,4 +13,5 @@ class CommonIcons {
   static const IconData icon_video_pause = const IconData(0xe63c, fontFamily: _iconFamily);
   static const IconData icon_video_full_screen = const IconData(0xe63d, fontFamily: _iconFamily);
   static const IconData icon_arrow_back = const IconData(0xe657, fontFamily: _iconFamily);
+  static const IconData icon_arrow_back2 = const IconData(0xe640, fontFamily: _iconFamily);
 }
