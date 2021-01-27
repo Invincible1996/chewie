@@ -1,5 +1,4 @@
 import 'package:chewie/src/chewie_player.dart';
-import 'package:chewie/src/common_icons.dart';
 import 'package:chewie/src/material_controls.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +30,9 @@ class PlayerWithControls extends StatelessWidget {
       //         backgroundColor: Color.fromRGBO(41, 41, 41, 0.7),
       //         iconColor: Color.fromARGB(255, 200, 200, 200),
       //       );
-      final controls = const MaterialControls();
+      final controls = MaterialControls(
+        onScreenOrientationChange: onScreenOrientationChange,
+      );
       return chewieController.showControls ? chewieController.customControls ?? controls : Container();
     }
 

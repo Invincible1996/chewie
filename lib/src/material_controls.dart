@@ -492,7 +492,7 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
           child: Padding(
             padding: const EdgeInsets.all(4.0),
             child: Icon(
-              Icons.arrow_back_ios_rounded,
+              CommonIcons.icon_arrow_back,
               color: Colors.white,
             ),
           ),
