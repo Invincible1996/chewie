@@ -167,10 +167,13 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
           //         )
           //       : SizedBox.shrink(),
           // ),
-          child: Icon(
-            CommonIcons.icon_video_full_screen,
-            color: Colors.white,
-            size: 18,
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Icon(
+              CommonIcons.icon_video_full_screen,
+              color: Colors.white,
+              size: 18,
+            ),
           ),
         ),
       ),

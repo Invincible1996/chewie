@@ -75,9 +75,12 @@ class PlayerWithControls extends StatelessWidget {
                     onScreenOrientationChange?.call(false);
                     // OrientationPlugin.forceOrientation(DeviceOrientation.portraitUp);
                   },
-                  child: Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.white,
+                    ),
                   )))
         ],
       ),
