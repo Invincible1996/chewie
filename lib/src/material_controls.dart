@@ -490,9 +490,9 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
             widget.onScreenOrientationChange?.call(false);
           },
           child: Padding(
-            padding: const EdgeInsets.only(left: 18,top: 32),
+            padding: const EdgeInsets.only(left: 18, top: 32),
             child: Icon(
-              CommonIcons.icon_arrow_back2,
+              Icons.arrow_back_ios_rounded,
               color: Colors.white,
             ),
           ),
