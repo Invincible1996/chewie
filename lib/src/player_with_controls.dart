@@ -1,4 +1,5 @@
 import 'package:chewie/src/chewie_player.dart';
+import 'package:chewie/src/common_icons.dart';
 import 'package:chewie/src/material_controls.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -66,22 +67,6 @@ class PlayerWithControls extends StatelessWidget {
               child: _buildPlayerWithControls(chewieController, context),
             ),
           ),
-          Positioned(
-              left: 30,
-              top: 20,
-              child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    onScreenOrientationChange?.call(false);
-                    // OrientationPlugin.forceOrientation(DeviceOrientation.portraitUp);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.white,
-                    ),
-                  )))
         ],
       ),
     );

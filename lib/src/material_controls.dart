@@ -10,7 +10,8 @@ import 'package:video_player/video_player.dart';
 import 'common_icons.dart';
 
 class MaterialControls extends StatefulWidget {
-  const MaterialControls({Key key}) : super(key: key);
+  const MaterialControls({Key key, this.onScreenOrientationChange}) : super(key: key);
+  final Function(bool isFullScreen) onScreenOrientationChange;
 
   @override
   State<StatefulWidget> createState() {
@@ -60,19 +61,23 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
         onTap: () => _cancelAndRestartTimer(),
         child: AbsorbPointer(
           absorbing: _hideStuff,
-          child: Column(
-            children: <Widget>[
-              if (_latestValue != null && !_latestValue.isPlaying && _latestValue.duration == null ||
-                  _latestValue.isBuffering)
-                const Expanded(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                )
-              else
-                _buildHitArea(),
-              _buildBottomBar(context),
-            ],
+          child: Container(
+            color: Colors.transparent,
+            child: Column(
+              children: <Widget>[
+                _buildHeader(),
+                if (_latestValue != null && !_latestValue.isPlaying && _latestValue.duration == null ||
+                    _latestValue.isBuffering)
+                  const Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                else
+                  _buildHitArea(),
+                _buildBottomBar(context),
+              ],
+            ),
           ),
         ),
       ),
@@ -123,7 +128,7 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
       child: Container(
         height: barHeight,
         decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
+            gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [
           Color.fromRGBO(0, 0, 0, 0.5),
           Color.fromRGBO(0, 0, 0, 0),
         ])),
@@ -461,6 +466,36 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
                   handleColor: Theme.of(context).accentColor,
                   bufferedColor: Theme.of(context).backgroundColor,
                   backgroundColor: Theme.of(context).disabledColor),
+        ),
+      ),
+    );
+  }
+
+  AnimatedOpacity _buildHeader() {
+    return AnimatedOpacity(
+      duration: const Duration(milliseconds: 300),
+      opacity: _hideStuff ? 0.0 : 1.0,
+      child: Container(
+        height: 64,
+        alignment: Alignment.centerLeft,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+          Color.fromRGBO(0, 0, 0, 0),
+          Color.fromRGBO(0, 0, 0, 0.5),
+        ])),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+            widget.onScreenOrientationChange?.call(false);
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Icon(
+              CommonIcons.icon_arrow_back,
+              color: Colors.white,
+            ),
+          ),
         ),
       ),
     );

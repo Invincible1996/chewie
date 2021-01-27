@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   video_player: ^1.0.0
+  flutter_statusbarcolor: ^0.2.3
 
 dev_dependencies:
   flutter_test:
