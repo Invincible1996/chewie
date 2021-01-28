@@ -482,7 +482,7 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
         alignment: Alignment.centerLeft,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
+            gradient: LinearGradient(begin: Alignment.bottomCenter, end: Alignment.topCenter, colors: [
           Color.fromRGBO(0, 0, 0, 0.5),
           Color.fromRGBO(0, 0, 0, 0),
         ])),
