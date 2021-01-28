@@ -129,8 +129,8 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
         height: barHeight,
         decoration: BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [
-          Color.fromRGBO(0, 0, 0, 0.5),
           Color.fromRGBO(0, 0, 0, 0),
+          Color.fromRGBO(0, 0, 0, 0.5),
         ])),
         child: Row(
           children: <Widget>[
@@ -483,8 +483,8 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
-          Color.fromRGBO(0, 0, 0, 0),
           Color.fromRGBO(0, 0, 0, 0.5),
+          Color.fromRGBO(0, 0, 0, 0),
         ])),
         child: GestureDetector(
           onTap: () {
