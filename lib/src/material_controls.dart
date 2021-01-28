@@ -435,9 +435,11 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
   }
 
   void _updateState() {
-    setState(() {
-      _latestValue = controller.value;
-    });
+    if (mounted) {
+      setState(() {
+        _latestValue = controller.value;
+      });
+    }
   }
 
   Widget _buildProgressBar() {
