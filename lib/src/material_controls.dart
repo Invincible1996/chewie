@@ -10,8 +10,9 @@ import 'package:video_player/video_player.dart';
 import 'common_icons.dart';
 
 class MaterialControls extends StatefulWidget {
-  const MaterialControls({Key key, this.onScreenOrientationChange}) : super(key: key);
+  const MaterialControls({Key key, this.onScreenOrientationChange, this.onPressBack}) : super(key: key);
   final Function(bool isFullScreen) onScreenOrientationChange;
+  final Function onPressBack;
 
   @override
   State<StatefulWidget> createState() {
@@ -490,6 +491,7 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
           onTap: () {
             Navigator.of(context).pop();
             widget.onScreenOrientationChange?.call(false);
+            widget.onPressBack?.call();
           },
           child: Padding(
             padding: const EdgeInsets.only(left: 18, top: 32),
